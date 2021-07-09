@@ -1,5 +1,8 @@
 pipeline{
         agent any
+        environment {
+                DB_PASSWORD = "psjsbhzxaixsan"
+        }
         stages{
                 stage('Clone down repo'){
                         steps{
@@ -15,7 +18,7 @@ pipeline{
                 }
                 stage('Deploy application'){
                         steps{
-                                sh "sudo docker-compose pull && sudo -E DB_PASSWORD=${DB_PASSWORD} docker-compose up -d"
+                                sh "cd chaperootodo_client && sudo docker-compose pull && sudo -E DB_PASSWORD=${DB_PASSWORD} docker-compose up -d"
                         }
                 }
         }
